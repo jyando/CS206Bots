@@ -6,6 +6,14 @@ import numpy
 import os
 import random
 
+amplitudeFL = numpy.pi/4
+frequencyFL = 5
+phaseOffSetFL = 0
+amplitudeBL = numpy.pi
+frequencyBL = 10
+phaseOffSetBL = numpy.pi/8
+
+
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
@@ -18,10 +26,14 @@ pyrosim.Prepare_To_Simulate(robotId)
 backLegSensorValues = numpy.zeros(1000)
 frontLegSensorValues = numpy.zeros(1000)
 
-targetAngles = (numpy.pi/4.0)*numpy.sin(numpy.linspace(0, 2 * numpy.pi, 1000))
+targetAnglesFL = (amplitudeFL) * numpy.sin((frequencyFL * numpy.linspace(0, 2 * numpy.pi, 1000)) + phaseOffSetFL)
+targetAnglesBL = (amplitudeBL) * numpy.sin((frequencyBL * numpy.linspace(0, 2 * numpy.pi, 1000)) + phaseOffSetBL)
 
-pathSin = 'data/sinFunction.npy'
-numpy.save(pathSin, targetAngles)
+#pathSinFL = 'data/sinFunctionFL.npy'
+#numpy.save(pathSinFL, targetAnglesFL)
+#pathSinBL = 'data/sinFunctionBL.npy'
+#numpy.save(pathSinBL, targetAnglesBL)
+#exit()
 
 for i in range(0,1000):
     p.stepSimulation()
@@ -32,24 +44,24 @@ for i in range(0,1000):
         bodyIndex=robotId,
         jointName="Torso_BackLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition= targetAngles[i],# (random.random()*numpy.pi)-(numpy.pi/2.0),
-        maxForce=35)
+        targetPosition= targetAnglesBL[i],
+        maxForce=15)
 
     pyrosim.Set_Motor_For_Joint(
         bodyIndex=robotId,
         jointName="Torso_FrontLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=targetAngles[i], #(random.random()*numpy.pi)-(numpy.pi/2.0),
-        maxForce=35)
+        targetPosition=targetAnglesFL[i],
+        maxForce=15)
 
     time.sleep(1/60)
     print(i)
 
 
-pathBack = 'data/backLegData.npy'
-pathFront = 'data/frontLegData.npy'
-numpy.save(pathBack, backLegSensorValues)
-numpy.save(pathFront, frontLegSensorValues)
+# pathBack = 'data/backLegData.npy'
+# pathFront = 'data/frontLegData.npy'
+# numpy.save(pathBack, backLegSensorValues)
+# numpy.save(pathFront, frontLegSensorValues)
 
 
 # print(frontLegSensorValues)
