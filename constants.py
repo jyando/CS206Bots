@@ -11,4 +11,9 @@ frequencyBL = 15
 phaseOffSetBL = 0#numpy.pi/4
 
 maxForce = 150
-sleepTime = 1/15
+sleepTime = 1/5
+
+# Cube size
+length = 1
+width = 1
+height = 1
