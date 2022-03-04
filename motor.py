@@ -8,7 +8,7 @@ class MOTOR:
 
     def __init__(self, jointName):
         self.jointName= jointName
-        print(self.jointName)
+        #print(self.jointName)
 
     def Set_Value(self, robotId, desiredAngle):
         self.robotId = robotId

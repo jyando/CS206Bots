@@ -3,6 +3,7 @@ import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import constants as c
 import os
+import random
 
 import numpy
 
@@ -18,11 +19,24 @@ class SOLUTION:
 
         self.weights = (2*self.weights) - 1
 
-    def Evaluate(self):
-            self.Create_World()
-            self.Create_Body()
-            self.Create_Brain()
-            os.system("py simulate.py")
+    def Evaluate(self, type):
+        self.Create_World()
+        self.Create_Body()
+        self.Create_Brain()
+
+        os.system("py simulate.py "+ type)
+
+        f = open('fitness.txt', 'r')
+        self.fitness = float(f.readline())
+        f.close()
+
+        # print(self.fitness)
+
+    def Mutate(self):
+        randomRow = random.randint(0,2)
+        randomColumn = random.randint(0,1)
+
+        self.weights[randomRow, randomColumn] = (2*numpy.random.rand()) - 1
 
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
