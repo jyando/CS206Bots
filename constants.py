@@ -12,7 +12,7 @@ phaseOffSetBL = 0#numpy.pi/4
 
 maxForce = 150
 sleepTime = 1/60
-timeLength = 100
+timeLength = 500
 
 # Cube size
 length = 1
@@ -20,4 +20,7 @@ width = 1
 height = 1
 
 # Number of generations
-numberOfGenerations = 15
+numberOfGenerations = 10
+
+# Population Size
+populationSize = 10

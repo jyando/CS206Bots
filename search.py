@@ -10,6 +10,6 @@ phc = PARALLEL_HILL_CLIMBER()
 
 phc.Evolve()
 
-# for i in range(0,5):
-#     os.system("py generate.py")
-#     os.system("py simulate.py")
+phc.Show_Best()
+
+#phc.Delete_Files()
