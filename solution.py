@@ -17,7 +17,7 @@ class SOLUTION:
 
         for i in range(self.weights[0].size):
             for j in range(self.weights[:,0].size):
-                self.weights[j,i] = numpy.random.rand()
+                self.weights[j,1] = numpy.random.rand()
 
         self.weights = (2*self.weights) - 1
 
@@ -85,35 +85,40 @@ class SOLUTION:
         pyrosim.Send_Cube(name="RightLeg", pos=[0.5, 0, 0], size=[1, 0.2, 0.2])
 
         #  Add the lower legs now
-        pyrosim.Send_Joint(name="FrontLeg_Lower", parent="FrontLeg", child="FrontLegLower", type="revolute",
+        pyrosim.Send_Joint(name="FrontLeg_LowerFrontLeg", parent="FrontLeg", child="LowerFrontLeg", type="revolute",
                            position=[0, 1, 0], jointAxis="1 0 0")
-        pyrosim.Send_Cube(name="FrontLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
-        pyrosim.Send_Joint(name="BackLeg_Lower", parent="BackLeg", child="BackLegLower", type="revolute",
+        pyrosim.Send_Cube(name="LowerFrontLeg", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+        pyrosim.Send_Joint(name="BackLeg_LowerBackLeg", parent="BackLeg", child="LowerBackLeg", type="revolute",
                            position=[0, -1, 0], jointAxis="1 0 0")
-        pyrosim.Send_Cube(name="BackLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+        pyrosim.Send_Cube(name="LowerBackLeg", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
 
-        pyrosim.Send_Joint(name="RightLeg_Lower", parent="RightLeg", child="RightLegLower", type="revolute",
+        pyrosim.Send_Joint(name="RightLeg_LowerRightLeg", parent="RightLeg", child="LowerRightLeg", type="revolute",
                            position=[1, 0, 0], jointAxis="0 1 0")
-        pyrosim.Send_Cube(name="RightLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
-        pyrosim.Send_Joint(name="LeftLeg_Lower", parent="LeftLeg", child="LeftLegLower", type="revolute",
-                           position=[-1,0, 0], jointAxis="1 0 0")
-        pyrosim.Send_Cube(name="LeftLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+        pyrosim.Send_Cube(name="LowerRightLeg", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+        pyrosim.Send_Joint(name="LeftLeg_LowerLeftLeg", parent="LeftLeg", child="LowerLeftLeg", type="revolute",
+                           position=[-1,0, 0], jointAxis="0 1 0")
+        pyrosim.Send_Cube(name="LowerLeftLeg", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
 
         pyrosim.End()
 
     def Create_Brain(self):
         self.brainNameFile = ("brain" + str(self.myID) + ".nndf")
+        #self.brainNameFile = ("brain.nndf")
         pyrosim.Start_NeuralNetwork(self.brainNameFile)
 
-        pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
-        pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
-        pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
-        pyrosim.Send_Sensor_Neuron(name=3, linkName="LeftLeg")
-        pyrosim.Send_Sensor_Neuron(name=4, linkName="RightLeg")
-        pyrosim.Send_Motor_Neuron(name=5, jointName="Torso_BackLeg")
-        pyrosim.Send_Motor_Neuron(name=6, jointName="Torso_FrontLeg")
-        pyrosim.Send_Motor_Neuron(name=7, jointName="Torso_LeftLeg")
-        pyrosim.Send_Motor_Neuron(name=8, jointName="Torso_RightLeg")
+        pyrosim.Send_Sensor_Neuron(name=0, linkName="LowerBackLeg")
+        pyrosim.Send_Sensor_Neuron(name=1, linkName="LowerFrontLeg")
+        pyrosim.Send_Sensor_Neuron(name=2, linkName="LowerLeftLeg")
+        pyrosim.Send_Sensor_Neuron(name=3, linkName="LowerRightLeg")
+
+        pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_BackLeg")
+        pyrosim.Send_Motor_Neuron(name=5, jointName="Torso_FrontLeg")
+        pyrosim.Send_Motor_Neuron(name=6, jointName="Torso_LeftLeg")
+        pyrosim.Send_Motor_Neuron(name=7, jointName="Torso_RightLeg")
+        pyrosim.Send_Motor_Neuron(name=8, jointName="FrontLeg_LowerFrontLeg")
+        pyrosim.Send_Motor_Neuron(name=9, jointName="BackLeg_LowerBackLeg")
+        pyrosim.Send_Motor_Neuron(name=10, jointName="LeftLeg_LowerLeftLeg")
+        pyrosim.Send_Motor_Neuron(name=11, jointName="RightLeg_LowerRightLeg")
 
         for currentRow in range(c.numSensorNeurons):
 

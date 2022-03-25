@@ -81,8 +81,3 @@ class PARALLEL_HILL_CLIMBER:
 
         for i in range(len(solutions)):
             solutions[i].Wait_For_Simulation_To_End()
-
-    def Delete_Files(self):
-        for i in range((c.populationSize + 1) * (c.numberOfGenerations + 1) + 1):
-            os.system("del brain" + str(i) + ".nndf")
-            os.system("del fitness" + str(i) + ".txt")

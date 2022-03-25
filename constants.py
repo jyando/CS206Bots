@@ -10,9 +10,9 @@ amplitudeBL = numpy.pi/4
 frequencyBL = 15
 phaseOffSetBL = 0#numpy.pi/4
 
-maxForce = 150
-sleepTime = 1/60
-timeLength = 500
+maxForce = 100
+sleepTime = 1/100
+timeLength = 750
 
 # Cube size
 length = 1
@@ -20,11 +20,13 @@ width = 1
 height = 1
 
 # Number of generations
-numberOfGenerations = 1
+numberOfGenerations = 10
 
 # Population Size
-populationSize = 1
+populationSize = 10
 
 # Dimensions of Weights
-numSensorNeurons = 9
-numMotorNeurons = 8
+numSensorNeurons = 4
+numMotorNeurons = 9
+
+motorJointRange = 0.2
