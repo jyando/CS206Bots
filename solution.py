@@ -84,6 +84,21 @@ class SOLUTION:
         pyrosim.Send_Joint(name="Torso_RightLeg", parent="Torso", child="RightLeg", type="revolute", position=[0.5, 0, 1], jointAxis="0 1 0")
         pyrosim.Send_Cube(name="RightLeg", pos=[0.5, 0, 0], size=[1, 0.2, 0.2])
 
+        #  Add the lower legs now
+        pyrosim.Send_Joint(name="FrontLeg_Lower", parent="FrontLeg", child="FrontLegLower", type="revolute",
+                           position=[0, 1, 0], jointAxis="1 0 0")
+        pyrosim.Send_Cube(name="FrontLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+        pyrosim.Send_Joint(name="BackLeg_Lower", parent="BackLeg", child="BackLegLower", type="revolute",
+                           position=[0, -1, 0], jointAxis="1 0 0")
+        pyrosim.Send_Cube(name="BackLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+
+        pyrosim.Send_Joint(name="RightLeg_Lower", parent="RightLeg", child="RightLegLower", type="revolute",
+                           position=[1, 0, 0], jointAxis="0 1 0")
+        pyrosim.Send_Cube(name="RightLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+        pyrosim.Send_Joint(name="LeftLeg_Lower", parent="LeftLeg", child="LeftLegLower", type="revolute",
+                           position=[-1,0, 0], jointAxis="1 0 0")
+        pyrosim.Send_Cube(name="LeftLegLower", pos=[0, 0, -0.5], size=[0.2, 0.2, 1])
+
         pyrosim.End()
 
     def Create_Brain(self):
