@@ -49,10 +49,18 @@ class ROBOT:
     def Get_Fitness(self, ID):
         self.stateOfLinkZero = p.getLinkState(self.robotId,0)
         self.positionOfLinkZero = self.stateOfLinkZero[0]
-        self.xCoordinateOfLinkZero = self.positionOfLinkZero[0]
+        self.zCoordinateOfLinkZero = self.positionOfLinkZero[2]
+
+        self.backLegSensorValue = self.sensors["LowerBackLeg"].getSumValues()
+        self.frontLegSensorValue = self.sensors["LowerFrontLeg"].getSumValues()
+        self.leftLegSensorValue = self.sensors["LowerLeftLeg"].getSumValues()
+        self.rightLegSensorValue = self.sensors["LowerRightLeg"].getSumValues()
+
+        self.legValues = (-self.leftLegSensorValue/c.timeLength - self.frontLegSensorValue/c.timeLength
+                          - self.rightLegSensorValue/c.timeLength)
 
         with open('tmp' + ID + '.txt', 'w') as f:
-            f.write(str(self.xCoordinateOfLinkZero))
+            f.write(str(self.zCoordinateOfLinkZero + self.legValues))
 
         os.system("rename tmp"+str(ID)+".txt " + "fitness"+str(ID)+".txt")
 
