@@ -20,10 +20,10 @@ width = 1
 height = 1
 
 # Number of generations
-numberOfGenerations = 1
+numberOfGenerations = 10
 
 # Population Size
-populationSize = 1
+populationSize = 10
 
 # Dimensions of Weights
 numSensorNeurons = 8
