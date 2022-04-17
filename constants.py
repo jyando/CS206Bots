@@ -10,9 +10,9 @@ amplitudeBL = numpy.pi/4
 frequencyBL = 15
 phaseOffSetBL = 0#numpy.pi/4
 
-maxForce = 100
-sleepTime = 1/100
-timeLength = 750
+maxForce = 25
+sleepTime = 1/120
+timeLength = 500
 
 # Cube size
 length = 1
@@ -30,3 +30,5 @@ numSensorNeurons = 4
 numMotorNeurons = 9
 
 motorJointRange = 0.2
+
+x = 4000

@@ -1,6 +1,7 @@
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
 import os
+import numpy
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 import constants as c
 
@@ -31,8 +32,11 @@ class ROBOT:
     def Sense(self, timeStep):
         self.timeStep = timeStep
         for i in self.sensors:
-            self.sensorI = self.sensors[i]
-            self.sensorI.Get_Value(self.timeStep)
+            if(i == "LowerRightLeg"):
+                self.sensorI = numpy.sin(c.x*timeStep)
+            else:
+                self.sensorI = self.sensors[i]
+                self.sensorI.Get_Value(self.timeStep)
 
     def Think(self):
         self.nn.Update()
