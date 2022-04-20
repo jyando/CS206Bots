@@ -10,7 +10,7 @@ amplitudeBL = numpy.pi/4
 frequencyBL = 15
 phaseOffSetBL = 0#numpy.pi/4
 
-maxForce = 100
+maxForce = 50
 sleepTime = 1/100
 timeLength = 750
 
@@ -20,10 +20,10 @@ width = 1
 height = 1
 
 # Number of generations
-numberOfGenerations = 10
+numberOfGenerations = 1
 
 # Population Size
-populationSize = 10
+populationSize = 1
 
 # Dimensions of Weights
 numSensorNeurons = 4
