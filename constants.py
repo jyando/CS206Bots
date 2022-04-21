@@ -10,7 +10,7 @@ amplitudeBL = numpy.pi/4
 frequencyBL = 15
 phaseOffSetBL = 0#numpy.pi/4
 
-maxForce = 50
+maxForce = 25
 sleepTime = 1/100
 timeLength = 750
 
