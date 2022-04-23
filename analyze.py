@@ -1,20 +1,18 @@
 import numpy
+import pandas as pd
 import matplotlib.pyplot
 
-filenameBack = 'data/backLegData.npy'
-filenameFront = 'data/frontLegData.npy'
-filenameSinFL = 'data/sinFunctionFL.npy'
-filenameSinBL = 'data/sinFunctionBL.npy'
+filenameA = 'testA.csv'
+filenameB = 'testB.csv'
 
-# backLegSensorValues = numpy.load(filenameBack)
-# frontLegSensorValues = numpy.load(filenameFront)
-sinValuesFL = numpy.load(filenameSinFL)
-sinValuesBL = numpy.load(filenameSinBL)
+testAData = pd.read_csv(filenameA)
+testBData = pd.read_csv(filenameB)
 
+testAMeans = testAData.mean(axis=0)
+testBMeans = testBData.mean(axis=0)
 
-#matplotlib.pyplot.plot(backLegSensorValues, label = "Back Leg Sensor", linewidth = 2)
-#matplotlib.pyplot.plot(frontLegSensorValues, label = " Front Leg Sensor")
-matplotlib.pyplot.plot(sinValuesFL, label = " Front Leg Sensor", linewidth = 5)
-matplotlib.pyplot.plot(sinValuesBL, label = " Back Leg Sensor")
+matplotlib.pyplot.plot(testAMeans, label = "Mean Fitness Values of Test A Generations", linewidth = 2)
+matplotlib.pyplot.plot(testBMeans, label = "Mean Fitness Values of Test B Generations")
 matplotlib.pyplot.legend()
 matplotlib.pyplot.show()
+
