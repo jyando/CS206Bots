@@ -107,8 +107,3 @@ class PARALLEL_HILL_CLIMBER:
 
         print(self.dataPd)
         self.dataPd.to_csv(filename, mode='a', index=False, header=False)
-        # writing to csv file
-        # with open(filename, 'w') as csvfile:
-        #     # creating a csv writer object
-        #     csvwriter = csv.writer(csvfile)
-        #     csvwriter.writerow(self.dataPd[1])
