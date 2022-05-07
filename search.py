@@ -8,4 +8,4 @@ phc.Evolve()
 
 phc.WriteOut()
 
-#phc.Show_Best()
+phc.Show_Best()
