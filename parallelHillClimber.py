@@ -101,7 +101,7 @@ class PARALLEL_HILL_CLIMBER:
             solutions[i].Wait_For_Simulation_To_End()
 
     def WriteOut(self):
-        filename = "testB.csv"
+        filename = "testC.csv"
 
         self.dataPd = pandas.DataFrame(self.data)
 

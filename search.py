@@ -6,6 +6,6 @@ phc = PARALLEL_HILL_CLIMBER()
 
 phc.Evolve()
 
-phc.WriteOut()
+#phc.WriteOut()
 
-#phc.Show_Best()
+phc.Show_Best()
